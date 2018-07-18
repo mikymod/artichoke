@@ -37,13 +37,6 @@ else if (key_fullscreen)
 // test save system
 else if (key_save)
 {
-	//var json = save_instances();
-	//var file = file_text_open_write("save.json")
-	//file_text_write_string(file, json);
-	//file_text_close(file);
-	
-	//url_open("save.json");
-	
 	var file = file_text_open_write("save.json")
 	file_text_write_real(file, room);
 	file_text_close(file);
@@ -51,16 +44,13 @@ else if (key_save)
 }
 else if (key_load)
 {
-	//// Load saved instances
-	//var json = "";
-	//var file = file_text_open_read("save.json");
-	//while (!file_text_eof(file))
-	//{
-	//	json += file_text_readln(file);
-	//}
-	//file_text_close(file);
-	//load_instances(json);
 	var file = file_text_open_read("save.json");
 	var last_room = file_text_read_real(file);
+	
 	room_goto(last_room);
+	if (instance_exists(camera_obj))
+	{
+		instance_destroy(camera_obj);
+		instance_create_layer(0, 0, "instances", camera_obj);
+	}
 }
