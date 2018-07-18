@@ -9,8 +9,6 @@ enum TransitionDir
 };
 
 dir      = TransitionDir.None;
-//_time     = 60;      //step
-//_cur_time = _time;   // step
 size_w   = 640;     // px
 size_h   = 360;     // px
 
