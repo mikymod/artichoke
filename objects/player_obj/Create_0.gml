@@ -31,7 +31,7 @@ enum PlayerState
     Idle,
     Run,
     Jump,
-	RangedAttack,
+	Hooking,
 	MeleeAttack
 }
 
@@ -41,5 +41,8 @@ facing = image_xscale;
 xscale = 1;
 yscale = 1;
 
-attacking_ranged = false;
-attacking_melee  = false;
+attacking_melee = false;
+
+hooking = false;
+hooked_target = 0;
+hook_range = 200;

@@ -3,8 +3,9 @@ if (pause_system_obj.game_pause || pause_system_obj.cam_transition_pause)
 	
 jumped = false;
 landed = false;
+hooked = false;
 
-// Vertical collision
+// Vertical movement
 if (vel_y < 1 && vel_y > -1)
 {
     platform_check();
@@ -28,7 +29,7 @@ if (platform_target)
     vel_y = 0;
 }
 
-// Horizontal collision
+// Horizontal movement
 repeat(abs(vel_x))
 {
     if (place_meeting(x + sign(vel_x), y, solid_obj) && !place_meeting(x + sign(vel_x), y - 1, solid_obj))

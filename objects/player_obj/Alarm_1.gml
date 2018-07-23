@@ -1,2 +1,1 @@
-/// @description active ranged attack
-attacking_ranged = false;
+/// @description Enable hook

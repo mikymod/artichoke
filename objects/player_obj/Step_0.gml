@@ -7,7 +7,7 @@ key_right         = keyboard_check(vk_right)          || gamepad_axis_value(0, g
 key_up            = keyboard_check(vk_up)             || gamepad_axis_value(0, gp_axislv) < -0.4;
 key_down          = keyboard_check(vk_down)           || gamepad_axis_value(0, gp_axislv) >  0.4;
 key_jump          = keyboard_check_pressed(vk_space)  || gamepad_button_check_pressed(0, gp_face1);
-key_attack_ranged = keyboard_check(ord("X"))          || gamepad_button_check(0, gp_face3);
+key_hook          = keyboard_check(ord("X"))          || gamepad_button_check(0, gp_face3);
 key_attack_melee  = keyboard_check(ord("C"))          || gamepad_button_check(0, gp_face2);
 
 // Apply the correct acceleration and friction
@@ -147,22 +147,6 @@ image_xscale = facing;
 xscale = approach(xscale, 1, 0.05);
 yscale = approach(yscale, 1, 0.05);
 
-// Ranged Attack
-if (key_attack_ranged && !attacking_ranged)
-{
-    state = PlayerState.RangedAttack;
-    attacking_ranged = true;
-    alarm[1] = 30;
-    with (instance_create_layer(x, y, "bullets", bullet_obj))
-    {
-        vel_x = 3 * other.facing;
-    }
-}
-else
-{
-    state = PlayerState.Idle;
-}
-
 // Melee Attack
 with (player_attack_obj)
 {
@@ -182,3 +166,40 @@ if (key_attack_melee && !attacking_melee)
         bboxbottom = other.y + 8;
     }
 }
+
+// Hook
+if (key_hook)
+{
+    state = PlayerState.Hooking;
+
+	if (!hooking)
+	{
+		hooking = true;
+		var hook_horizontal_input = key_right - key_left;
+		var hook_vertical_input   = key_down - key_up;
+		hook_dir = point_direction(x, y, x + hook_horizontal_input, y + hook_vertical_input);
+		hooked_target = collision_line(x, y, x + lengthdir_x(hook_range, hook_dir), y + lengthdir_y(hook_range, hook_dir), solid_obj, false, true);
+	}
+
+	if (hooked_target)
+	{   	
+		if (place_meeting(x + 1, y, solid_obj) || place_meeting(x - 1, y, solid_obj) || place_meeting(x, y - 1, solid_obj))
+		{
+			vel_x = 0;
+			vel_y = 0;
+			hooked_target = 0;
+		}
+		else
+		{
+			vel_x = lengthdir_x(8, hook_dir);
+			vel_y = lengthdir_y(8, hook_dir);
+		}
+	}
+}
+else
+{
+	hooked_target = 0;
+	hooking = false;
+}
+
+show_debug_message(hooked_target);
