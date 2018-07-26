@@ -1,11 +1,24 @@
 var vel_x = lengthdir_x(vel, dir);
 var vel_y = lengthdir_y(vel, dir);
 
-x += vel_x;
-y += vel_y;
-
-if (place_meeting(x + 1, y, solid_obj) || place_meeting(x - 1, y, solid_obj) || place_meeting(x, y - 1, solid_obj) || place_meeting(x, y + 1, solid_obj))
+repeat (abs(vel_y))
 {
-	vel = 0;
-	active = true;
+	if (!place_meeting(x, y + sign(vel_y), solid_obj))
+        y += sign(vel_y);
+    else
+	{
+        vel = 0;
+		active = true;
+	}
+}
+
+repeat (abs(vel_x))
+{
+	if (!place_meeting(x + sign(vel_x), y, solid_obj))
+        x += sign(vel_x);
+    else
+	{
+        vel = 0;
+		active = true;
+	}
 }

@@ -175,6 +175,7 @@ if (key_hook)
 		hooking = true
 		var hook_horizontal_input = key_right - key_left;
 		var hook_vertical_input   = key_down - key_up;
+		if (on_ground && hook_vertical_input == 0) hook_horizontal_input = facing;
 		grapple = instance_create_layer(x, y, "player", grapple_obj);
 		with (grapple)
 			dir = point_direction(x, y, x + hook_horizontal_input, y + hook_vertical_input);
