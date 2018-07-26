@@ -29,6 +29,17 @@ if (platform_target)
     vel_y = 0;
 }
 
+with (grapple_obj)
+{
+	if (active)
+	{
+		var dir = point_direction(other.x, other.y, x, y);
+		var dist = point_distance(other.x, other.y, x, y);
+		other.vel_x = lengthdir_x(dist * 0.05, dir);
+		other.vel_y = lengthdir_y(dist * 0.05, dir);
+	}
+}
+
 // Horizontal movement
 repeat(abs(vel_x))
 {

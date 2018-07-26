@@ -12,7 +12,7 @@ key_attack       = 0;
 key_block        = 0;
 
 // Player
-multiplier    = 0.8;
+multiplier    = 0.75;
 ground_accel  = 1.00 * multiplier;
 ground_fric   = 2.00 * multiplier;
 air_accel     = 0.75 * multiplier;
@@ -44,5 +44,3 @@ yscale = 1;
 attacking_melee = false;
 
 hooking = false;
-hooked_target = 0;
-hook_range = 200;

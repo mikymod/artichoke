@@ -4,7 +4,7 @@ var key_next_room     = keyboard_check_pressed(vk_right);
 var key_previous_room = keyboard_check_pressed(vk_left);
 var key_fullscreen    = keyboard_check_pressed(ord("F"));
 // test save system
-var key_save          = keyboard_check_pressed(ord("S"));
+var key_save          = keyboard_check_pressed(ord("K"));
 var key_load          = keyboard_check_pressed(ord("L"));
 
 if (key_next_room)
