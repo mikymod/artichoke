@@ -1,5 +1,5 @@
-var vel_x = lengthdir_x(vel, dir);
-var vel_y = lengthdir_y(vel, dir);
+vel_x = lengthdir_x(vel, dir);
+vel_y = lengthdir_y(vel, dir);
 
 repeat (abs(vel_y))
 {
