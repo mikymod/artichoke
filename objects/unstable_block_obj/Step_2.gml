@@ -2,7 +2,7 @@ switch (state)
 {
 	case UnstableBlockState.None:
 	{
-		if (place_meeting(x, y - 1, player_obj) || place_meeting(x + 1, y, player_obj) || place_meeting(x - 1, y, player_obj))
+		if (place_meeting(x, y - 1, actor_obj) || place_meeting(x + 1, y, actor_obj) || place_meeting(x - 1, y, actor_obj))
 			state = UnstableBlockState.Active;
 		
 		break;
@@ -23,7 +23,22 @@ switch (state)
 		{
 			if (!place_meeting(x, y + sign(vel_y), solid_obj))
 			{
-		        y += sign(vel_y);
+				with (grapple_obj)
+				{
+					if (place_meeting(x, y + 1, other.id))
+						y += sign(other.vel_y);
+			
+					if (place_meeting(x, y - 1, other.id))
+						y += sign(other.vel_y);
+					
+					if (place_meeting(x + 1, y, other.id))
+						y += sign(other.vel_y);
+			
+					if (place_meeting(x - 1, y, other.id))
+						y += sign(other.vel_y);
+				}
+				
+			    y += sign(vel_y);
 			}
 			else
 			{
