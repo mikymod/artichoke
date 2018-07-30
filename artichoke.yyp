@@ -55,14 +55,6 @@
             }
         },
         {
-            "Key": "0a76d5dc-22a1-4650-84ba-47e2340a1800",
-            "Value": {
-                "id": "c1e10449-fb22-4a57-a6f9-65990b7013f1",
-                "resourcePath": "objects\\rslope_obj\\rslope_obj.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "0f129fa7-5758-43fd-a868-79320be4c0d5",
             "Value": {
                 "id": "781239a7-6dcb-46fc-923b-1f46bad4e884",
@@ -199,26 +191,10 @@
             }
         },
         {
-            "Key": "4673f436-d8b9-44fc-a799-4c0ebf97b0b3",
-            "Value": {
-                "id": "eb4a809d-99f8-4eb8-9171-de4f201d1e64",
-                "resourcePath": "sprites\\lslope_spr\\lslope_spr.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
             "Key": "4690c562-e38c-4575-8b93-6ba6057833e5",
             "Value": {
                 "id": "4c9f3f0b-996a-480c-a344-e14106f68d34",
                 "resourcePath": "objects\\grapple_obj\\grapple_obj.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "49d5eeb7-146f-486b-937d-64b317957196",
-            "Value": {
-                "id": "c4c6e04a-b06b-4be7-80f7-a9e0f47d64b3",
-                "resourcePath": "objects\\lslope_obj\\lslope_obj.yy",
                 "resourceType": "GMObject"
             }
         },
@@ -484,14 +460,6 @@
                 "id": "e15b70be-0cb0-47ea-8244-81fc23d31801",
                 "resourcePath": "views\\cd734479-9d8c-4f81-ab8f-12cfe6c50074.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "ce0cc475-01f5-4667-aeb5-e61ffdfe2438",
-            "Value": {
-                "id": "12d8f84f-e6f3-4e18-bd3b-17be963c58e3",
-                "resourcePath": "sprites\\rslope_spr\\rslope_spr.yy",
-                "resourceType": "GMSprite"
             }
         },
         {
