@@ -34,3 +34,9 @@ with (grass_obj)
         cut = true;
     }
 }
+
+with (enemy_obj)
+{
+	// TODO: start enemy death animation, particles, ecc
+	instance_destroy();
+}

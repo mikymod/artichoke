@@ -1,3 +1,13 @@
+switch (state)
+{
+	case PlayerState.Idle:
+		sprite_index = player_spr;
+		break;
+	case PlayerState.Run:
+		sprite_index = player_run_spr;
+		break;
+}
+
 with (grapple_obj)
 {
 	draw_set_color(c_green);
