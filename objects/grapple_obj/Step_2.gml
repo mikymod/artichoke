@@ -1,5 +1,4 @@
-vel_x = lengthdir_x(vel, dir);
-vel_y = lengthdir_y(vel, dir);
+if (hooked) return;
 
 repeat (abs(vel_y))
 {
@@ -7,8 +6,8 @@ repeat (abs(vel_y))
         y += sign(vel_y);
     else
 	{
-        vel = 0;
-		active = true;
+        vel_y = 0;
+		hooked = true;
 	}
 }
 
@@ -18,7 +17,7 @@ repeat (abs(vel_x))
         x += sign(vel_x);
     else
 	{
-        vel = 0;
-		active = true;
+        vel_x = 0;
+		hooked = true;
 	}
 }

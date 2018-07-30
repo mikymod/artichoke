@@ -31,7 +31,7 @@ if (platform_target)
 
 with (grapple_obj)
 {
-	if (active)
+	if (hooked)
 	{
 		var dir = point_direction(other.x, other.y, x, y);
 		var dist = point_distance(other.x, other.y, x, y);

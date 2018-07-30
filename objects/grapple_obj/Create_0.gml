@@ -1,6 +1,4 @@
-vel = 25;
-dir = 0;
-vel_x = lengthdir_x(vel, dir);
-vel_y = lengthdir_y(vel, dir);
+event_inherited();
 
-active = false;
+dir = 0;
+hooked = false;

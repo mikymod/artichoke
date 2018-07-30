@@ -178,7 +178,11 @@ if (key_hook)
 		if (on_ground && hook_vertical_input == 0) hook_horizontal_input = facing;
 		grapple = instance_create_layer(x, y, "player", grapple_obj);
 		with (grapple)
+		{
 			dir = point_direction(x, y, x + hook_horizontal_input, y + hook_vertical_input);
+			vel_x = lengthdir_x(25, dir);
+			vel_y = lengthdir_y(25, dir);
+		}
 	}
 }
 else
