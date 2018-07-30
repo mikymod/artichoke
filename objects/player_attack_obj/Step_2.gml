@@ -38,5 +38,9 @@ with (grass_obj)
 with (enemy_obj)
 {
 	// TODO: start enemy death animation, particles, ecc
-	instance_destroy();
+			// Chop grass
+	if (!(bbox_left > other.bboxright || bbox_right < other.bboxleft || bbox_top > other.bboxbottom || bbox_bottom < other.bboxtop))
+	{
+		instance_destroy();
+	}
 }
