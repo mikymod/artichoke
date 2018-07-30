@@ -2,13 +2,13 @@ if (pause_system_obj.game_pause || pause_system_obj.cam_transition_pause)
 	return;
 	
 // Input
-key_left          = keyboard_check(ord("A"))          || gamepad_axis_value(0, gp_axislh) < -0.4;
-key_right         = keyboard_check(ord("D"))          || gamepad_axis_value(0, gp_axislh) >  0.4;
-key_up            = keyboard_check(ord("W"))          || gamepad_axis_value(0, gp_axislv) < -0.4;
-key_down          = keyboard_check(ord("S"))          || gamepad_axis_value(0, gp_axislv) >  0.4;
+key_left          = keyboard_check(vk_left)           || gamepad_axis_value(0, gp_axislh) < -0.4;
+key_right         = keyboard_check(vk_right)          || gamepad_axis_value(0, gp_axislh) >  0.4;
+key_up            = keyboard_check(vk_up)             || gamepad_axis_value(0, gp_axislv) < -0.4;
+key_down          = keyboard_check(vk_down)           || gamepad_axis_value(0, gp_axislv) >  0.4;
 key_jump          = keyboard_check_pressed(vk_space)  || gamepad_button_check_pressed(0, gp_face1);
-key_hook          = keyboard_check(ord("E"))          || gamepad_button_check(0, gp_face3);
-key_attack_melee  = keyboard_check(ord("Q"))          || gamepad_button_check(0, gp_face2);
+key_hook          = keyboard_check(ord("X"))          || gamepad_button_check(0, gp_face3);
+key_attack_melee  = keyboard_check(ord("C"))          || gamepad_button_check(0, gp_face2);
 
 // Apply the correct acceleration and friction
 var accel;
