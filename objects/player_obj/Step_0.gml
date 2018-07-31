@@ -2,13 +2,12 @@ if (pause_system_obj.game_pause || pause_system_obj.cam_transition_pause)
 	return;
 	
 // Input
-key_left          = keyboard_check(vk_left)           || gamepad_axis_value(0, gp_axislh) < -0.4;
-key_right         = keyboard_check(vk_right)          || gamepad_axis_value(0, gp_axislh) >  0.4;
-key_up            = keyboard_check(vk_up)             || gamepad_axis_value(0, gp_axislv) < -0.4;
-key_down          = keyboard_check(vk_down)           || gamepad_axis_value(0, gp_axislv) >  0.4;
-key_jump          = keyboard_check_pressed(vk_space)  || gamepad_button_check_pressed(0, gp_face1);
-key_hook          = keyboard_check(ord("X"))          || gamepad_button_check(0, gp_face3);
-key_attack_melee  = keyboard_check(ord("C"))          || gamepad_button_check(0, gp_face2);
+key_left  = controller_obj.key_left;
+key_right = controller_obj.key_right;
+key_up    = controller_obj.key_up;
+key_down  = controller_obj.key_down;
+key_jump  = controller_obj.key_jump;
+key_hook  = controller_obj.key_hook;
 
 // Apply the correct acceleration and friction
 var accel;
@@ -41,10 +40,13 @@ if (((key_right && collision_left) || (key_left && collision_right)) && can_stic
 
 // Handle gravity
 if (!on_ground) {
-    if ((collision_left || collision_right) && vel_y >= 0) {
+    if ((collision_left || collision_right) && vel_y >= 0)
+	{
         // Wall slide
         vel_y = approach(vel_y, vel_y_max, gravity_slide);
-    } else {
+    }
+	else
+	{
         // Fall normally
         vel_y = approach(vel_y, vel_y_max, gravity_norm);
     }
@@ -147,39 +149,17 @@ image_xscale = facing;
 xscale = approach(xscale, 1, 0.05);
 yscale = approach(yscale, 1, 0.05);
 
-// Melee Attack
-with (player_attack_obj)
-{
-	instance_destroy();
-	other.attacking_melee = false;
-}
-if (key_attack_melee && !attacking_melee)
-{
-	state = PlayerState.MeleeAttack;
-	attacking_melee = true;
-	
-	with (instance_create_layer(x, y, "player", player_attack_obj))
-	{
-        bboxleft  = min(other.x + (5 * other.facing), other.x + (24 * other.facing));
-        bboxright = max(other.x + (5 * other.facing), other.x + (24 * other.facing));   
-        bboxtop    = other.y - 1;
-        bboxbottom = other.y + 8;
-    }
-}
-
 // Hook
+hook_dir = point_direction(0, 0, controller_obj.axis_lh, controller_obj.axis_lv);
+
 if (key_hook)
 {
 	if (!hooking)
 	{
 		hooking = true
-		var hook_horizontal_input = key_right - key_left;
-		var hook_vertical_input   = key_down - key_up;
-		if (on_ground && hook_vertical_input == 0) hook_horizontal_input = facing;
-		grapple = instance_create_layer(x, y, "player", grapple_obj);
-		with (grapple)
+		with (instance_create_layer(x, y, "player", grapple_obj))
 		{
-			dir = point_direction(x, y, x + hook_horizontal_input, y + hook_vertical_input);
+			dir = other.hook_dir;
 			vel_x = lengthdir_x(25, dir);
 			vel_y = lengthdir_y(25, dir);
 		}
@@ -188,10 +168,21 @@ if (key_hook)
 else
 {
 	hooking = false;
-	grapple = 0;
 	
 	with (grapple_obj)
 	{
 		instance_destroy();
+	}
+}
+
+with (grapple_obj)
+{
+	if (hooked)
+	{
+		var dir = point_direction(other.x, other.y, x, y);
+		var dist = point_distance(other.x, other.y, x, y);
+		dist = clamp(dist, 0, 125);
+		other.vel_x = lengthdir_x(dist * 0.08, dir);
+		other.vel_y = lengthdir_y(dist * 0.08, dir);
 	}
 }

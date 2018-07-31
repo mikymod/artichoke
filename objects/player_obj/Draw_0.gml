@@ -15,9 +15,9 @@ with (grapple_obj)
 	draw_set_color(c_white);
 }
 
-draw_set_alpha(0.5);
-draw_set_color(c_red);
-draw_rectangle(bbox_left, bbox_top, bbox_right, bbox_bottom, false);
-draw_set_alpha(1.0);
+draw_circle(x, y, 24, true);
+var xx = x + 24 * cos(-degtorad(hook_dir)); 
+var yy = y + 24 * sin(-degtorad(hook_dir)); 
+draw_circle(xx, yy, 3, false);
 
 draw_self();
