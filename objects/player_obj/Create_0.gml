@@ -43,6 +43,7 @@ yscale = 1;
 
 attacking_melee = false;
 
+aiming = false;
 hooking = false;
-num_key_hook_pressed = 0;
-key_hook_reset_timer = 600;
+max_hook_threshold = 0;
+hook_threshold = max_hook_threshold;

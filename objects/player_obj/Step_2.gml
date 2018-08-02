@@ -15,7 +15,7 @@ else
     repeat(abs(vel_y))
     {
         if (!platform_check())
-            y += sign(vel_y);
+            y += sign(vel_y) * time_controller_obj.time_multiplier;
         else
             break;
     }
@@ -33,7 +33,7 @@ if (platform_target)
 repeat(abs(vel_x))
 {   
     if (!place_meeting(x + sign(vel_x), y, solid_obj))
-        x += sign(vel_x);
+        x += sign(vel_x) * time_controller_obj.time_multiplier;
     else
         vel_x = 0;
 }

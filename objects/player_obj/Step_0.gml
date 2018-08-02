@@ -151,33 +151,32 @@ yscale = approach(yscale, 1, 0.05);
 
 // Hook
 hook_dir = point_direction(0, 0, controller_obj.axis_lh, controller_obj.axis_lv);
-
-if (key_hook)
+if (key_hook && !instance_exists(grapple_obj))
 {
-	if (!hooking)
-	{
-		hooking = true
-		with (instance_create_layer(x, y, "player", grapple_obj))
-		{
-			dir = other.hook_dir;
-			vel_x = lengthdir_x(25, dir);
-			vel_y = lengthdir_y(25, dir);
-		}
-	}
+	time_controller_obj.slowdown = true;
+	
+	aiming = true;
 }
 else
 {
-	hooking = false;
+	time_controller_obj.slowdown = false;
 	
-	with (grapple_obj)
+	if (aiming)
 	{
-		instance_destroy();
+		with (instance_create_layer(x, y, "player", grapple_obj))
+		{
+			vel_x = lengthdir_x(vel, other.hook_dir);
+			vel_y = lengthdir_y(vel, other.hook_dir);
+		}
+		
+		aiming = false;
+		hooking = true;
 	}
 }
 
 with (grapple_obj)
 {
-	if (hooked)
+	if (state == GrappleState.Hooked)
 	{
 		var dir = point_direction(other.x, other.y, x, y);
 		var dist = point_distance(other.x, other.y, x, y);

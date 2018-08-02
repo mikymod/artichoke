@@ -455,6 +455,14 @@
             }
         },
         {
+            "Key": "d82ccf99-14d2-4e20-bee0-4e1cacdd8b15",
+            "Value": {
+                "id": "82d8268e-6fcb-45c1-bc7a-e424fa32b174",
+                "resourcePath": "objects\\time_controller_obj\\time_controller_obj.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "d9a8c530-bcfb-44bd-92a5-6dd9527eead2",
             "Value": {
                 "id": "c94bf6a1-99b4-49a3-8e66-838772ab9f2a",
