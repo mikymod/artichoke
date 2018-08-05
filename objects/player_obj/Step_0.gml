@@ -150,7 +150,15 @@ xscale = approach(xscale, 1, 0.05);
 yscale = approach(yscale, 1, 0.05);
 
 // Hook
-hook_dir = point_direction(0, 0, controller_obj.axis_lh, controller_obj.axis_lv);
+if (controller_obj.pad_active)
+{
+	hook_dir = point_direction(0, 0, controller_obj.axis_lh, controller_obj.axis_lv);
+}
+else
+{
+	hook_dir = point_direction(x, y, mouse_x, mouse_y);
+}
+
 if (key_hook && !instance_exists(grapple_obj))
 {
 	time_controller_obj.slowdown = true;
