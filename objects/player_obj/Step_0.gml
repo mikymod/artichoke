@@ -150,19 +150,19 @@ xscale = approach(xscale, 1, 0.05);
 yscale = approach(yscale, 1, 0.05);
 
 // Hook
-if (controller_obj.pad_active)
-{
-	hook_dir = point_direction(0, 0, controller_obj.axis_lh, controller_obj.axis_lv);
-}
-else
-{
-	hook_dir = point_direction(x, y, mouse_x, mouse_y);
-}
-
 if (key_hook && !instance_exists(grapple_obj))
 {
 	time_controller_obj.slowdown = true;
 	
+	if (controller_obj.pad_active)
+	{
+		hook_dir = point_direction(0, 0, controller_obj.axis_lh, controller_obj.axis_lv);
+	}
+	else
+	{
+		hook_dir = point_direction(x, y, mouse_x, mouse_y);
+	}
+
 	aiming = true;
 }
 else
@@ -172,7 +172,7 @@ else
 	if (aiming)
 	{
 		with (instance_create_layer(x, y, "player", grapple_obj))
-		{
+		{	
 			vel_x = lengthdir_x(vel, other.hook_dir);
 			vel_y = lengthdir_y(vel, other.hook_dir);
 		}

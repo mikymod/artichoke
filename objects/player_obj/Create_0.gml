@@ -2,14 +2,14 @@
 event_inherited();
 
 // Input
-key_left         = 0;
-key_right        = 0;
-key_up           = 0;
-key_down         = 0;
-key_jump         = 0;
-key_dash         = 0;
-key_attack       = 0;
-key_block        = 0;
+key_left   = 0;
+key_right  = 0;
+key_up     = 0;
+key_down   = 0;
+key_jump   = 0;
+key_dash   = 0;
+key_attack = 0;
+key_block  = 0;
 
 // Player
 multiplier    = 0.75;
@@ -32,7 +32,6 @@ enum PlayerState
     Run,
     Jump,
 	Hooking,
-	MeleeAttack
 }
 
 state  = PlayerState.Idle;
@@ -41,9 +40,7 @@ facing = image_xscale;
 xscale = 1;
 yscale = 1;
 
-attacking_melee = false;
-
-aiming = false;
-hooking = false;
+aiming             = false;
+hooking            = false;
 max_hook_threshold = 0;
-hook_threshold = max_hook_threshold;
+hook_threshold     = max_hook_threshold;

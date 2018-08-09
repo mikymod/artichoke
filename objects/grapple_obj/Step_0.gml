@@ -28,6 +28,11 @@ switch (state)
 		{
 			instance_destroy();
 		}
+		
+		if (collision_line(x, y, player_obj.x, player_obj.y, solid_obj, false, true))
+		{
+			instance_destroy();
+		}
 	
 		break;
 	}
@@ -41,7 +46,7 @@ switch (state)
 		{
 			instance_destroy();
 		}
-
+		
 		break;
 	}
 }

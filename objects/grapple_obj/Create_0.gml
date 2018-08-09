@@ -9,7 +9,6 @@ enum GrappleState
 
 state = GrappleState.Forward;
 
-dir = 0;
 vel = 18;
 vel_x = 0;
 vel_y = 0;
