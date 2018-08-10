@@ -2,12 +2,12 @@ if (pause_system_obj.game_pause || pause_system_obj.cam_transition_pause)
 	return;
 	
 // Input
-key_left  = controller_obj.key_left;
-key_right = controller_obj.key_right;
-key_up    = controller_obj.key_up;
-key_down  = controller_obj.key_down;
-key_jump  = controller_obj.key_jump;
-key_hook  = controller_obj.key_hook;
+key_left  = input_manager_obj.key_left;
+key_right = input_manager_obj.key_right;
+key_up    = input_manager_obj.key_up;
+key_down  = input_manager_obj.key_down;
+key_jump  = input_manager_obj.key_jump;
+key_hook  = input_manager_obj.key_hook;
 
 // Apply the correct acceleration and friction
 var accel;
@@ -154,9 +154,9 @@ if (key_hook && !instance_exists(grapple_obj))
 {
 	time_controller_obj.slowdown = true;
 	
-	if (controller_obj.pad_active)
+	if (input_manager_obj.pad_active)
 	{
-		hook_dir = point_direction(0, 0, controller_obj.axis_lh, controller_obj.axis_lv);
+		hook_dir = point_direction(0, 0, input_manager_obj.axis_lh, input_manager_obj.axis_lv);
 	}
 	else
 	{

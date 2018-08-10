@@ -498,7 +498,7 @@
             "Key": "e460ef0a-fe9e-4518-8fa9-0a799e3cbb38",
             "Value": {
                 "id": "4adac203-a875-41e5-94a5-0fe0492637fd",
-                "resourcePath": "objects\\controller_obj\\controller_obj.yy",
+                "resourcePath": "objects\\input_manager_obj\\input_manager_obj.yy",
                 "resourceType": "GMObject"
             }
         },
