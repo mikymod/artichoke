@@ -263,6 +263,14 @@
             }
         },
         {
+            "Key": "7353b3c0-29e9-4161-b5fb-e550220c5c43",
+            "Value": {
+                "id": "fe44a3f5-ca84-4a02-80ec-d95f3751c658",
+                "resourcePath": "objects\\follow_camera_obj\\follow_camera_obj.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "76335977-f8bd-489d-b9aa-8db3d79b666f",
             "Value": {
                 "id": "a7a6390e-a07d-48fe-92c9-b7acd79f7f82",
@@ -346,7 +354,7 @@
             "Key": "a3aebb55-1736-44f2-b041-7b508777e53d",
             "Value": {
                 "id": "7a8c718d-9a43-4960-a32c-1a818d117bb5",
-                "resourcePath": "rooms\\game_rm\\game_rm.yy",
+                "resourcePath": "rooms\\level01_rm\\level01_rm.yy",
                 "resourceType": "GMRoom"
             }
         },
@@ -474,7 +482,7 @@
             "Key": "dde20536-f90a-48a0-9d96-64dfd37d91ee",
             "Value": {
                 "id": "4f0dc527-ab36-403f-a7c5-0e9e6fe51674",
-                "resourcePath": "rooms\\test_hook_rm\\test_hook_rm.yy",
+                "resourcePath": "rooms\\level02_rm\\level02_rm.yy",
                 "resourceType": "GMRoom"
             }
         },

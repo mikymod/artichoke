@@ -1,6 +1,6 @@
 
 {
-    "name": "game_rm",
+    "name": "level01_rm",
     "id": "a3aebb55-1736-44f2-b041-7b508777e53d",
     "creationCodeFile": "",
     "inheritCode": false,
