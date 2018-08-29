@@ -1,10 +1,6 @@
 if (pause_system_obj.game_pause || pause_system_obj.cam_transition_pause)
 	return;
 	
-jumped = false;
-landed = false;
-hooked = false;
-
 // Vertical movement
 if (vel_y < 1 && vel_y > -1)
 {
@@ -20,12 +16,8 @@ else
             break;
     }
 }
-
 if (platform_target)
-{
-    if (!on_ground)
-        landed = true;
-    
+{   
     vel_y = 0;
 }
 
@@ -53,7 +45,7 @@ if (collision_left && collision_right)
 		if (left.bbox_right > bbox_left || right.bbox_left < bbox_right)
 		{
 			show_debug_message("Squash");
-			instance_destroy()
+			instance_destroy();
 		}
 	}
 }

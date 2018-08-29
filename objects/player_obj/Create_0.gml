@@ -23,8 +23,6 @@ jump_height   = 8.00 * multiplier;
 gravity_norm  = 0.50 * multiplier;
 gravity_slide = 0.25 * multiplier;
 
-cling_time    = 2.0;
-
 // States
 enum PlayerState
 {

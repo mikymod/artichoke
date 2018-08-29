@@ -9,7 +9,7 @@ key_down  = input_manager_obj.key_down;
 key_jump  = input_manager_obj.key_jump;
 key_hook  = input_manager_obj.key_hook;
 
-// Apply the correct acceleration and friction
+// Apply acceleration and friction
 var accel;
 var fric;
 if (on_ground)
@@ -21,35 +21,6 @@ else
 {
     accel = air_accel;
     fric  = air_fric; 
-}
-
-// Reset wall stick
-if ((!collision_right && !collision_left) || on_ground)
-{
-    can_stick = true;
-    sticking = false;
-}
-
-// Cling to wall
-if (((key_right && collision_left) || (key_left && collision_right)) && can_stick && !on_ground)
-{
-    alarm[0] = cling_time;
-    sticking = true; 
-    can_stick = false;       
-}
-
-// Handle gravity
-if (!on_ground) {
-    if ((collision_left || collision_right) && vel_y >= 0)
-	{
-        // Wall slide
-        vel_y = approach(vel_y, vel_y_max, gravity_slide);
-    }
-	else
-	{
-        // Fall normally
-        vel_y = approach(vel_y, vel_y_max, gravity_norm);
-    }
 }
 
 // Movement
@@ -84,42 +55,7 @@ if (!key_right && !key_left)
     state = PlayerState.Idle;
 }
 
-// Wall jump
-if (key_jump && collision_left && !on_ground)
-{
-    yscale = 1.33;
-    xscale = 0.67;
-            
-    if (key_left)
-    {
-        vel_y = -jump_height * 1.2;
-        vel_x =  jump_height * .66;
-    }
-    else
-    {
-        vel_y = -jump_height * 1.1;
-        vel_x =  vel_x_max; 
-    }  
-}
-
-if (key_jump && collision_right && !on_ground)
-{
-    yscale = 1.33;
-    xscale = 0.67;
-    
-    if (key_right)
-    {
-        vel_y = -jump_height * 1.2;
-        vel_x = -jump_height * .66;
-    }
-    else
-    {
-        vel_y = -jump_height * 1.1;
-        vel_x = -vel_x_max;
-    }
-}
- 
-// Jump 
+// Jump
 if (key_jump)
 { 
     if (on_ground)
@@ -130,17 +66,81 @@ if (key_jump)
         xscale = 0.67;
     }
 }
-
 if (!on_ground)
 {
     state = PlayerState.Jump;
 }
 
-// Swap facing during wall slide
-if (collision_right && !on_ground)
-    facing = -1;
-else if (collision_left && !on_ground)
-    facing = 1;
+// Handle gravity
+if (!on_ground)
+{
+    if ((collision_left || collision_right) && vel_y >= 0)
+	{
+        // Wall slide
+        vel_y = approach(vel_y, vel_y_max, gravity_slide);
+    }
+	else
+	{
+        // Fall normally
+        vel_y = approach(vel_y, vel_y_max, gravity_norm);
+    }
+}
+
+// // Reset wall stick
+// if ((!collision_right && !collision_left) || on_ground)
+// {
+//     can_stick = true;
+//     sticking = false;
+// }
+
+// // Cling to wall
+// if (((key_right && collision_left) || (key_left && collision_right)) && can_stick && !on_ground)
+// {
+//     alarm[0] = cling_time;
+//     sticking = true;
+//     can_stick = false;
+// }
+
+// // Wall jump
+// if (key_jump && collision_left && !on_ground)
+// {
+//     yscale = 1.33;
+//     xscale = 0.67;
+
+//     if (key_left)
+//     {
+//         vel_y = -jump_height * 1.2;
+//         vel_x =  jump_height * .66;
+//     }
+//     else
+//     {
+//         vel_y = -jump_height * 1.1;
+//         vel_x =  vel_x_max; 
+//     }  
+// }
+
+// if (key_jump && collision_right && !on_ground)
+// {
+//     yscale = 1.33;
+//     xscale = 0.67;
+    
+//     if (key_right)
+//     {
+//         vel_y = -jump_height * 1.2;
+//         vel_x = -jump_height * .66;
+//     }
+//     else
+//     {
+//         vel_y = -jump_height * 1.1;
+//         vel_x = -vel_x_max;
+//     }
+// }
+
+// // Swap facing during wall slide
+// if (collision_right && !on_ground)
+//     facing = -1;
+// else if (collision_left && !on_ground)
+//     facing = 1;
 
 // Change sprite facing
 image_xscale = facing;
@@ -152,6 +152,8 @@ yscale = approach(yscale, 1, 0.05);
 // Hook
 if (key_hook && !instance_exists(grapple_obj))
 {
+    state = PlayerState.Hooking;
+
 	time_controller_obj.slowdown = true;
 	
 	if (input_manager_obj.pad_active)
